@@ -1,31 +1,38 @@
 import React from "react";
+import { Box, Typography } from "@mui/material";
 
 const HighlightBox = ({ title, value, Icon }) => {
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         backgroundColor: "#374151",
         color: "white",
-        padding: "1rem",
+        p: 2,
         borderRadius: "0.5rem",
-        width: "180px",
-        height: "80px",
+        minWidth: "150px",
+        width: { xs: "100%", sm: "180px" }, 
+        height: "90px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
       }}
     >
-      <div>
-        <div style={{ fontSize: "18px" }}>{title}</div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <Icon style={{ fontSize: "30px" }} />
-          <p style={{ fontSize: "30px" }}>{value}</p>
-        </div>
-      </div>
-    </div>
+      <Typography variant="body1" sx={{ fontSize: "18px", fontWeight: "bold" }}>
+        {title}
+      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Icon sx={{ fontSize: "30px" }} />
+        <Typography variant="h6" sx={{ fontSize: "28px" }}>
+          {value}
+        </Typography>
+      </Box>
+    </Box>
   );
 };
 

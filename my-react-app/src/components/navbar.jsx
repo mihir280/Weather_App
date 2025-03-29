@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import { AppBar, Toolbar, Typography, TextField, Button, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import InputAdornment from "@mui/material/InputAdornment";
 import FilterDramaTwoToneIcon from '@mui/icons-material/FilterDramaTwoTone';
-
 
 const Navbar = ({ onSearch }) => {
   const [searchCity, setSearchCity] = useState("");
@@ -16,51 +13,42 @@ const Navbar = ({ onSearch }) => {
   };
 
   return (
-    <nav
-      style={{
-        justifyContent: "space-between",
-        display: "flex",
-        alignItems: "center",
-        marginTop: "10px",
-        padding: "10px",
-        paddingLeft: '30px',
-        paddingRight: '30px'
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "center", gap: "2px" }}>
-        <FilterDramaTwoToneIcon />
-        <p style={{ fontWeight: "bold", fontSize: "20px" }}>Weather</p>
-      </div>
-      <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-        <TextField
-          variant="outlined"
-          placeholder="Search city 'London'"
-          size="small"
-          value={searchCity}
-          onChange={(e) => setSearchCity(e.target.value)}
-          style={{
-            backgroundColor: "white",
-            borderRadius: "2rem",
-            width: "22rem",
-          }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <Button
-          variant="contained"
-          onClick={handleSearchClick}
-          style={{ borderRadius: "6px" ,backgroundColor: '#4B5550'}}
-        >
-          Search
-        </Button>
-      </div>
-      
-    </nav>
+    <AppBar position="static" sx={{ mb: 3 }}>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <FilterDramaTwoToneIcon />
+          Weather
+        </Typography>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <TextField
+            variant="outlined"
+            placeholder="Search city 'Delhi'"
+            size="small"
+            value={searchCity}
+            onChange={(e) => setSearchCity(e.target.value)}
+            sx={{
+              backgroundColor: "white",
+              borderRadius: "4px",
+              width: { xs: '100%', sm: '22rem' },
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button
+            variant="contained"
+            onClick={handleSearchClick}
+            sx={{ borderRadius: "4px", backgroundColor: '#4B5550' }}
+          >
+            Search
+          </Button>
+        </div>
+      </Toolbar>
+    </AppBar>
   );
 };
 

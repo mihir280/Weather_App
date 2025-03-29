@@ -1,4 +1,5 @@
 import React from "react";
+import { Box, Typography } from "@mui/material";
 
 const FiveDayForecast = ({ forecastData }) => {
   const formatDate = (dateString) => {
@@ -10,49 +11,40 @@ const FiveDayForecast = ({ forecastData }) => {
   };
 
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         backgroundColor: "#4B5563",
         color: "white",
         borderRadius: "0.5rem",
-        width: "200px",
-        paddingLeft: "15px",
-        paddingRight:'15px',
-        paddingTop: "15px",
-        paddingBottom: "5px",
-      
-
-        
+        padding: "15px",
+        width: { xs: "100%", sm: "300px", md: "350px" }, // Full width on mobile, wider on larger screens
       }}
     >
       {forecastData.list.slice(0, 5).map((item, index) => (
-        <div
+        <Box
           key={index}
-          style={{
-            marginBottom: "25px",
+          sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            marginBottom: "15px",
+            padding: "8px",
+            backgroundColor: "#374151",
+            borderRadius: "8px",
           }}
         >
-          <div>
-            <div style={{ fontSize: "15px", fontWeight: "bold" }}>
-              {Math.round(item.main.temp)}°c
-            </div>
-          </div>
-          <div>
-            <div style={{ fontSize: "15px", fontWeight: "bold" }}>
-              {formatDate(item.dt_txt)}
-            </div>
-          </div>
-          <div>
-            <div style={{ fontSize: "15px" }}>
-              {item.weather[0].description}
-            </div>
-          </div>
-        </div>
+          <Typography variant="body1" sx={{ fontWeight: "bold", fontSize: "16px" }}>
+            {Math.round(item.main.temp)}°C
+          </Typography>
+          <Typography variant="body2" sx={{ fontSize: "14px", fontWeight: "bold" }}>
+            {formatDate(item.dt_txt)}
+          </Typography>
+          <Typography variant="body2" sx={{ fontSize: "14px" }}>
+            {item.weather[0].description}
+          </Typography>
+        </Box>
       ))}
-    </div>
+    </Box>
   );
 };
 

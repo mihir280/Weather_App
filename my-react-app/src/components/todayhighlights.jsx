@@ -1,16 +1,13 @@
+import React from "react";
+import { Box, Grid, Typography } from "@mui/material";
 import AirIcon from "@mui/icons-material/Air";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import NightsStayIcon from "@mui/icons-material/NightsStay";
-import InvertColorsIcon from "@mui/icons-material/InvertColors";
-import HighlightBox from "../../src/components/Highlightbox";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import CompressIcon from '@mui/icons-material/Compress';
-import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
+import WindPowerIcon from "@mui/icons-material/WindPower";
 
 const TodayHighlights = ({ weatherData, airQualityData }) => {
-  const { main, wind, visibility, sys } = weatherData;
-  const airQualityIndex = airQualityData?.main?.aqi; 
-  const { co, no, no2, o3 } = airQualityData?.components || {};
+  const { wind, sys } = weatherData;
+  const airQualityIndex = airQualityData?.main?.aqi;
 
   const renderAirQualityDescription = (aqi) => {
     switch (aqi) {
@@ -29,152 +26,97 @@ const TodayHighlights = ({ weatherData, airQualityData }) => {
     }
   };
 
-  const highlights = [
-    { title: "Humidity", value: `${main.humidity}%`, Icon: InvertColorsIcon },
-    {
-      title: "Pressure",
-      value: `${main.pressure} hPa`,
-      Icon: CompressIcon,
-    },
-    {
-      title: "Visibility",
-      value: `${visibility / 1000} km`,
-      Icon:  VisibilityIcon,
-    },
-    {
-      title: "Feels Like",
-      value: `${main.feels_like}°C`,
-      Icon: DeviceThermostatIcon,
-    },
-  ];
-
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         backgroundColor: "#4B5563",
         color: "white",
-        width: "840px",
         borderRadius: "0.5rem",
-        padding: "30px",
+        p: 3,
+        width: { xs: "95%", sm: "85%", md: "70%" },
+        mx: "auto",
+        boxShadow: "0px 4px 10px rgba(0,0,0,0.2)",
       }}
     >
-      <div style={{ fontSize: "20px" }}>Today's Highlights</div>
-      <div
-        style={{
-          display: "flex",
-          gap: "18px",
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: "#374151",
-            color: "white",
-            padding: "1rem",
-            borderRadius: "0.5rem",
-            marginTop: "11px",
-            width: "370px",
-          }}
-        >
-          <div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                fontSize: "22px",
-              }}
-            >
-              <p>Air Quality Index</p>
-              <div
-                style={{
-                  marginTop: "1rem",
-                  fontSize: "16px",
-                  fontWeight: "700",
+      <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
+        Today's Highlights
+      </Typography>
+
+      <Grid container spacing={2}>
+        {/* Air Quality */}
+        <Grid item xs={12} sm={6}>
+          <Box
+            sx={{
+              backgroundColor: "#374151",
+              p: 2,
+              borderRadius: "0.5rem",
+            }}
+          >
+            <Typography variant="h6">Air Quality Index</Typography>
+            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <Typography
+                sx={{
                   backgroundColor: "green",
-                  height: "20px",
-                  width: "45px",
+                  px: 1,
+                  py: 0.5,
                   borderRadius: "6px",
-                  alignItems: "center",
-                  display: "flex",
-                  justifyContent: "center",
+                  fontWeight: "bold",
+                  fontSize: "1rem",
                 }}
               >
                 {renderAirQualityDescription(airQualityIndex)}
-              </div>
-            </div>
-            <div>
-              <AirIcon style={{ fontSize: "35px" }} />
-              <div
-                style={{
-                  marginTop: "1rem",
-                  display: "grid",
-                  gridTemplateColumns: "repeat(4, 1fr)",
-                  gap: "10px",
-                }}
-              >
-                <div>
-                  <p style={{ fontWeight: "bold" }}>CO</p>
-                  <p>{co} µg/m³</p>
-                </div>
-                <div>
-                  <p style={{ fontWeight: "bold" }}>NO</p>
-                  <p>{no} µg/m³</p>
-                </div>
-                <div>
-                  <p style={{ fontWeight: "bold" }}>NO₂</p>
-                  <p>{no2} µg/m³</p>
-                </div>
-                <div>
-                  <p style={{ fontWeight: "bold" }}>O₃</p>
-                  <p>{o3} µg/m³</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+              </Typography>
+              <AirIcon sx={{ fontSize: "35px" }} />
+            </Box>
+          </Box>
+        </Grid>
 
-        <div
-          style={{
-            backgroundColor: "#374151",
-            color: "white",
-            padding: "1rem",
-            borderRadius: "0.5rem",
-            marginTop: "11px",
-            width: "385px",
-          }}
-        >
-          <div style={{ fontSize: "22px", }}>
-            <p>Sunrise And Sunset</p>
-            <div style={{ display: "flex", justifyContent: "space-between" ,padding:'10px'}}>
-              <div>
-                <WbSunnyIcon style={{ fontSize: "40px",marginLeft:'30px' }} />
-                <p style={{ fontSize: "25px",marginLeft:'20px' }} >{new Date(sys.sunrise * 1000).toLocaleTimeString()}</p>
-              </div>
-              <div>
-                <NightsStayIcon style={{ fontSize: "40px",marginRight:'35px' }} />
-                <p style={{ fontSize: "25px",marginRight:'50px' }} >{new Date(sys.sunset * 1000).toLocaleTimeString()}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        {/* Sunrise & Sunset */}
+        <Grid item xs={12} sm={6}>
+          <Box
+            sx={{
+              backgroundColor: "#374151",
+              p: 2,
+              borderRadius: "0.5rem",
+            }}
+          >
+            <Typography variant="h6">Sunrise And Sunset</Typography>
+            <Grid container justifyContent="space-between" sx={{ mt: 2 }}>
+              <Grid item>
+                <WbSunnyIcon sx={{ fontSize: "40px", color: "yellow" }} />
+                <Typography fontSize="20px">
+                  {new Date(sys.sunrise * 1000).toLocaleTimeString()}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <NightsStayIcon sx={{ fontSize: "40px", color: "blue" }} />
+                <Typography fontSize="20px">
+                  {new Date(sys.sunset * 1000).toLocaleTimeString()}
+                </Typography>
+              </Grid>
+            </Grid>
+          </Box>
+        </Grid>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "4px",
-          marginTop: "10px",
-        }}
-      >
-        {highlights.map((highlight, index) => (
-          <HighlightBox
-            key={index}
-            title={highlight.title}
-            value={highlight.value}
-            Icon={highlight.Icon}
-          />
-        ))}
-      </div>
-    </div>
+        {/* Wind Speed */}
+        <Grid item xs={12} sm={6}>
+          <Box
+            sx={{
+              backgroundColor: "#374151",
+              p: 2,
+              borderRadius: "0.5rem",
+              textAlign: "center",
+            }}
+          >
+            <Typography variant="h6">Wind Speed</Typography>
+            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", mt: 1 }}>
+              <WindPowerIcon sx={{ fontSize: "35px", mr: 1 }} />
+              <Typography fontSize="20px">{wind.speed} km/h</Typography>
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 
