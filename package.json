@@ -1,7 +1,7 @@
 {
   "name": "my-react-app",
   "homepage": "https://mihir280.github.io/Weather_App/",
-  "private": false,
+  "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
