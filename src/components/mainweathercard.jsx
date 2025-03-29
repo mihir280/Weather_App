@@ -59,15 +59,15 @@ const MainWeatherCard = ({ weatherData }) => {
         }}
       >
         {temperatureCelsius}°C
-        {/* {renderTemperatureIcon()} */}
+        
       </Box>
 
-      {/* Weather Description */}
+      
       <Typography variant="body2" sx={{ mt: 1, fontWeight: 400 }}>
         {weatherDescription}
       </Typography>
 
-      {/* Date & Location */}
+      
       <Box sx={{ mt: 2 }}>
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <CalendarMonthIcon sx={{ mr: 1 }} />

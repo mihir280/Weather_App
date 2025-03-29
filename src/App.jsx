@@ -37,7 +37,7 @@ const App = () => {
       );
       setFiveDayForecast(forecastResponse.data);
 
-      // Update search history (store only last 5 searches)
+      
       setSearchHistory((prev) => {
         const updatedHistory = [city, ...prev.filter((c) => c !== city)].slice(0, 5);
         return updatedHistory;
@@ -94,7 +94,7 @@ const App = () => {
                 <TodayHighlights weatherData={weatherData} airQualityData={airQualityData} />
               </Box>
             </Box>
-            {/* Recent Search History */}
+            
             <Box sx={{ textAlign: "center", mt: 4 }}>
               <Typography variant="h6">Recent Searches</Typography>
               {searchHistory.map((city, index) => (

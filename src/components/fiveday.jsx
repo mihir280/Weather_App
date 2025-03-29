@@ -17,7 +17,7 @@ const FiveDayForecast = ({ forecastData }) => {
         color: "white",
         borderRadius: "0.5rem",
         padding: "15px",
-        width: { xs: "100%", sm: "300px", md: "350px" }, // Full width on mobile, wider on larger screens
+        width: { xs: "100%", sm: "300px", md: "350px" }, 
       }}
     >
       {forecastData.list.slice(0, 5).map((item, index) => (

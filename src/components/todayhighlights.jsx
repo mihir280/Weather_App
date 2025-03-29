@@ -43,7 +43,7 @@ const TodayHighlights = ({ weatherData, airQualityData }) => {
       </Typography>
 
       <Grid container spacing={2}>
-        {/* Air Quality */}
+       
         <Grid item xs={12} sm={6}>
           <Box
             sx={{
@@ -71,7 +71,7 @@ const TodayHighlights = ({ weatherData, airQualityData }) => {
           </Box>
         </Grid>
 
-        {/* Sunrise & Sunset */}
+        
         <Grid item xs={12} sm={6}>
           <Box
             sx={{
@@ -98,7 +98,7 @@ const TodayHighlights = ({ weatherData, airQualityData }) => {
           </Box>
         </Grid>
 
-        {/* Wind Speed */}
+        
         <Grid item xs={12} sm={6}>
           <Box
             sx={{
